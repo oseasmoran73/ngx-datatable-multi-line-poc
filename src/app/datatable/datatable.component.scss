@@ -1,0 +1,40 @@
+
+
+//override styles
+.ngx-datatable {
+  .datatable-body {
+    .datatable-scroll {
+      .datatable-row-wrapper {
+        .datatable-body-row {
+          .datatable-body-cell {
+            overflow: initial;
+            display: flex;
+            .datatable-body-cell-label {
+              position: relative;
+              display: inline-flex;
+              overflow: hidden;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.datatable__popover-container {
+  position: absolute;
+  display: none;
+}
+
+.datatable__content {
+  // single
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  //double
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-word;
+  max-height: 52px;
+}

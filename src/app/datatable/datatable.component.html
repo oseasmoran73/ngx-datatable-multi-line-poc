@@ -1,0 +1,41 @@
+<ngx-datatable
+  [limit]="limit"
+  [columnMode]="'force'"
+  [footerHeight]="50"
+  [rowHeight]="isMultiLine ? 'auto' : ''"
+  [rows]="rows"
+>
+  <ng-container *ngFor="let column of columns">
+    <ngx-datatable-column [name]="column">
+      <ng-template
+        ngx-datatable-cell-template
+        let-rowIndex="rowIndex"
+        let-row="row"
+        let-value="value"
+      >
+        <span
+          #content
+          class="datatable__content"
+          [style.display]="isMultiLine ? '-webkit-box' : 'block'"
+          (mouseenter)="displayPopoverText(content)"
+          (mouseleave)="hidePopoverText(content)"
+          (dblclick)="editing[rowIndex + '-' + column] = true"
+          *ngIf="!editing[rowIndex + '-' + column]"
+        >
+          {{ value }}
+        </span>
+        <!-- TODO: Apply popover styles and alignment -->
+        <div class="datatable__popover-container">
+          Text?
+        </div>
+        <input
+          autofocus
+          (blur)="updateValue($event, column, rowIndex)"
+          *ngIf="editing[rowIndex + '-' + column]"
+          type="text"
+          [value]="value"
+        />
+      </ng-template>
+    </ngx-datatable-column>
+  </ng-container>
+</ngx-datatable>
